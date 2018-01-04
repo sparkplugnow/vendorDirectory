@@ -19,7 +19,6 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/register',function (req, res) {
-  //console.log(req.body)
   var name = req.body.name;
   var email = req.body.email;
   var phone = req.body.phone;
@@ -53,7 +52,6 @@ var errors = req.validationErrors();
 
     User.createUser(newUser, function (err, user) {
       if (err) { throw err };
-      console.log(user);
     });
     req.flash('success_msg', 'you are registered to login');
 
