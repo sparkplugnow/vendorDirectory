@@ -11,8 +11,6 @@
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
     "express": "*",
-    "express-handlebars": "*",
-    "express-messages": "*",
     "express-session": "*",
     "express-validator": "^4.2.1",
     "mime": "^2.0.3",

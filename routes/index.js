@@ -5,7 +5,7 @@ var multer = require('multer')
 
 //Schemas
 var User = require('../models/user');
-//var Admin = require('../models/admin');
+
 
 var passportConfig = require('../config/passport.js');
 
@@ -23,7 +23,6 @@ var storage = multer.diskStorage({
     cb(null, filename);
   }
 });
-
 function fileFilter(req, file, cb) {
   var type = file.mimetype;
   var typeArray = type.split("/");
@@ -45,9 +44,9 @@ const getRouteFn = (route) => {
   router.get(`/${route}`, (req, res) => res.json(`${route} page`))
 }
 
-getRouteFn('login')
+//getRouteFn('login')
 getRouteFn('Welcome')
-getRouteFn('update')
+// getRouteFn('update')
 getRouteFn('register')
 
 router.get('/dashboard', (req, res, next) => {
@@ -56,12 +55,15 @@ router.get('/dashboard', (req, res, next) => {
   });
 });
 
-// router.get("/login", (req, res, next) => {
-//   res.render('login');
-// });
+router.get("/login", (req, res, next) => {
+  res.render('login');
+});
 // router.get("/register", (req, res, next) => {
 //   res.render("register");
 // });
+ router.get("/update", (req, res, next) => {
+   res.render("update");
+ });
 
 router.get('/:username', (req, res, next) => {
   User

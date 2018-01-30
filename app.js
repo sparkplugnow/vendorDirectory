@@ -49,6 +49,7 @@ db.once('open', () => {
   console.log('connection to database established')
 });
 
+
 var app = express();
 
 // view engine setup
@@ -63,6 +64,41 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, 'public')));
 
+
+// Express Session
+app.use(session({secret: config.sessionSecret, saveUninitialized: true, resave: true}));
+
+// Express Validator
+app.use(expressValidator({
+  errorFormatter: (param, msg, value) => {
+    const namespace = param.split('.'),
+      root = namespace.shift(),
+      formParam = root;
+
+    while (namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {param: formParam, msg: msg, value: value};
+  }
+}));
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.errors = req.flash('error')
+  res.locals.user = req.user;
+
+  next();
+});
 
 // Express Session
 app.use(session({secret: config.sessionSecret, saveUninitialized: true, resave: true}));
