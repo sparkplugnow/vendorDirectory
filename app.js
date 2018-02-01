@@ -35,7 +35,7 @@ var options = {
 };
 
 //connect to mongodb locally
-mongoose.connect(config.mongo);
+mongoose.connect(config.mlab);
 
 //connect to database mongoose.connect(config.mlab);
 
