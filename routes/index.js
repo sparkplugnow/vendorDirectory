@@ -39,14 +39,16 @@ var upload = multer({
 });
 
 /****MULTER */
+router.get('/',(req,res)=>{
+  res.send('routes are <br> <a href="login">/login<a> ,<br> <a href="login">/register<a>,<br> <a href="update">/update')
+})
 
 const getRouteFn = (route) => {
   router.get(`/${route}`, (req, res) => res.json(`${route} page`))
 }
 
-//getRouteFn('login')
-getRouteFn('Welcome')
-// getRouteFn('update')
+getRouteFn('login')
+getRouteFn('update')
 getRouteFn('register')
 
 router.get('/dashboard', (req, res, next) => {
