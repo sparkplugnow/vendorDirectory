@@ -40,8 +40,7 @@ var upload = multer({
 
 /****MULTER */
 router.get('/',(req,res)=>{
-  res.send('routes are <br> <a href="login">/login<a> ,<br> <a href="login">/register<a>,<br> <a href="update">/update,<br> <a href="users">/users</a>'>
-      ')
+  res.send('routes are <br> <a href="login">/login<a> ,<br> <a href="login">/register<a>,<br> <a href="update">/update,<br> <a href="/users">/users</a>')
 })
 
 const getRouteFn = (route) => {
