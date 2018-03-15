@@ -40,16 +40,16 @@ var upload = multer({
 
 /****MULTER */
 router.get('/',(req,res)=>{
-  res.send('routes are <br> <a href="login">/login<a> ,<br> <a href="login">/register<a>,<br> <a href="update">/update,<br> <a href="/users">/users</a>')
+  res.send('routes are <br> <a href="login">/login<a> ,<br> <a href="login">/register<a>,<br> <a href="update">/update')
 })
 
 const getRouteFn = (route) => {
   router.get(`/${route}`, (req, res) => res.json(`${route} page`))
 }
 
-getRouteFn('login')
-getRouteFn('update')
-getRouteFn('register')
+//getRouteFn('login')
+//getRouteFn('update')
+//getRouteFn('register')
 
 router.get('/dashboard', (req, res, next) => {
   res.json({
@@ -60,19 +60,19 @@ router.get('/dashboard', (req, res, next) => {
 router.get("/login", (req, res, next) => {
   res.render('login');
 });
-// router.get("/register", (req, res, next) => {
-//   res.render("register");
-// });
+ router.get("/register", (req, res, next) => {
+   res.render("register");
+ });
  router.get("/update", (req, res, next) => {
    res.render("update");
  });
 
-router.get('/:username', (req, res, next) => {
-  User
-    .find({username: req.params.username},(err, user) => {
-      res.json({user:user})
-    })
-})
+// router.get('/:username', (req, res, next) => {
+//   User
+//     .find({username: req.params.username},(err, user) => {
+//       res.json({user:user})
+//     })
+// })
 
 router.get('/users', (req, res, next) => {
   User.find((err, users) => {
@@ -90,8 +90,8 @@ router.post('/register', upload.single('avatar'), (req, res, next) => {
     password2,
     role
   } = req.body;
-  var avatar = req.file.avatar;
-  console.log(avatar)
+ // var avatar = req.file.avatar;
+  //console.log(avatar)
   const newUser = new User({
     name,
     username,
@@ -100,10 +100,10 @@ router.post('/register', upload.single('avatar'), (req, res, next) => {
     password2,
     role,
     admin: false,
-    avatar: {
-      name: req.file.originalname,
-      path: req.file.path
-    }
+   // avatar: {
+   //   name: req.file.originalname,
+   //   path: req.file.path
+   // }
   })
   User.findOne({
     email: req.body.email
@@ -164,6 +164,7 @@ router.post('/login', passport.authenticate('user-local', {
   failureRedirect: '/login',
   failureFlash: true
 }), function (req, res) {
+ // console.log(req.body)
   res.redirect('/dashboard');
 });
 

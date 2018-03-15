@@ -10,7 +10,7 @@ var UserSchema = mongoose.Schema({
         trim: true,
         lowercase: true
     },
-    avatar: {
+   /* avatar: {
         path: {
             type: String,
             // required: true,
@@ -20,7 +20,7 @@ var UserSchema = mongoose.Schema({
             type: String,
             trim: true
         }
-    },
+    },*/
     password: String,
     password2: String,
     role: String,

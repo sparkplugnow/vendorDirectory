@@ -10,6 +10,7 @@
     "body-parser": "*",
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
+    "cors": "^2.8.4",
     "express": "*",
     "express-session": "*",
     "express-validator": "^4.2.1",

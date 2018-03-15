@@ -14,7 +14,7 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var config = require('./config/config.js')
 var multer = require('multer')
-
+var cors = require('cors');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -60,6 +60,7 @@ app.set('view engine', 'ejs');
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, 'public')));
